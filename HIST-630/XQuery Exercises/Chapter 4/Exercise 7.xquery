@@ -60,4 +60,4 @@ declare context item := document {
 </books>
 };
 
-/books/book/title
+/books/book[fn:contains(./title, "Book")][fn:concat(/books/book/author, ". ", /books/book/date, ".")]
