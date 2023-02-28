@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>My Standoff Markup</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Born digital</p>
+         </sourceDesc>
+      </fileDesc>
+  </teiHeader>
+   <standOff>
+      <listPerson type="fictional">
+         <person xml:id="person_Flor">
+            <persName><forename>Florinda</forename></persName>
+            <note>Main character (purported) of the romance. Based on the legend of Florinda la Cava. Daughter of Count Julian and [his wife]. Sweetheart of [Alphonso]. Raped by King Roderigo.</note>
+         </person>
+         <person xml:id="person_Rod">
+            <persName><roleName type="nobility">King</roleName><forename>Roderigo</forename></persName>
+            <note>King of Spain. Husband of Zabra. Based on historical figure Roderic, last Visigothic king. In the legend of Florinda la Cava, his rape of Florinda leads to an invasion led by Count Julian.</note>
+         </person>
+         <person xml:id="person_Cast">
+            <persName><forename>Castabella</forename></persName>
+            <note>Attendant of Fidelia. Sister of Alphonso. Virginal friend of Florinda who urges her to patience.</note>
+         </person>
+         <person xml:id="person_Jul">
+            <persName><roleName type="nobility">Count</roleName> <forename>Julian</forename></persName>
+            <note>Father of Florinda. His wife is unnamed but present. Legendary figure, probably ahistorical. His outrage over his daughter's rape leads him to invade Roderigo's kingdom.</note>
+         </person>
+         <person xml:id="person_JulWife">
+            <persName><roleName>Julian's wife</roleName>, <roleName>count's wife</roleName>, <roleName>Florinda's mother</roleName></persName>
+            <note>Mother of Florinda. Wife of Julian. Unnamed but present in Pulter's romance.</note>
+         </person>
+         <person xml:id="Alph">
+            <persName><forename>Alphonso</forename></persName>
+            <note>Beloved of Florinda. Brother of Castabella. Ordered by Roderigo to accompany Ithocles in order to get him away from court.</note>
+         </person>
+         <person xml:id="Ith">
+            <persName><forename>Ithocles</forename></persName>
+            <note>Brother of Fidelia. An African prince in exile.</note>
+         </person>
+         <person xml:id="Alo">
+            <persName><forename>Alonso</forename></persName>
+            <note>Roderigo's chief lackey.</note>
+         </person>
+         <person xml:id="Zab">
+            <persName><roleName type="nobility">Queen</roleName><forename>Zabra</forename></persName>
+            <note>Queen of Spain. Wife of Roderigo. Originally a Moorish princess but converted to Christianity before her marriage.</note>
+         </person>
+      </listPerson>
+      <listPlace>
+         <place xml:id="place_Sp">
+            <placeName>Spain</placeName>
+            <note><!--info--></note>
+         </place>
+      </listPlace>
+    </standOff>
+</TEI>
