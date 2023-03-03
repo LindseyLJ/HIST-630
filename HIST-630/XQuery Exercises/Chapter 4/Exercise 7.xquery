@@ -60,4 +60,20 @@ declare context item := document {
 </books>
 };
 
-/books/book[fn:contains(./title, "Book")][fn:concat(/books/book/author, ". ", /books/book/date, ".")]
+(:
+/books/book[fn:contains(./title, "Book")] - to return anything with "Book" in the title
+:)
+
+(:
+/books/book[fn:contains(./title, "Book")][fn:concat(/books/book/author, ". ", /books/book/date, ".")] - trying to figure out how to do a brief citation
+:)
+
+(:
+/books/book[./date/@year/xs:integer(.) gt 2015] - to return only books published after 2015
+:)
+
+(:
+/books/book[fn:position() = (2 to 4)] - to return 2-4 in the list
+:)
+
+/books/book
