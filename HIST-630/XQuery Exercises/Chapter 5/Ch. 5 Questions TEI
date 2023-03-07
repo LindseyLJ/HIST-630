@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Title</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+  </teiHeader>
+  <text>
+      <body>
+         <p>1. What is an XQuery module, and what are its two parts?</p>
+         <p>An XQuery module is a file which contains a query; its two parts are the prolog (which provides the XQuery processor with context for evaluating the query) and the query body (which contains expressions that will be evaluated).</p>
+         <p>2. What is the purpose of an XQuery version declaration?</p>
+         <p>To tell the XQuery processor which version of XQuery you're using, setting the context for your query.</p>
+         <p>3. What is an XQuery namespace declaration, and what are the different ways to declare namespaces?</p>
+         <p>An XQuery namespace declaration associates its namespace URI with a prefix. You can declare a namespace by associating a prefix with the full namespace, for example <!--declare namespace tei = "http://www/tei-c.org/ns/1.0";-->, or by declaring a default element namespace, for example <!--declare default element namespace "http://www.tei-c.org/ns/1.0";-->.</p>
+         <p>4. Why do we recommend avoiding default element namespace declarations?</p>
+         <p>Because even though TEI doesn't, some other vocabularies do make use of namespaced attributes, and the setting does not extend to the namespace of attributes; also, because default element namespaces make it more difficult to construct or query nodes without a namespace/with an empty namespace URI.</p>
+         <p>5. What are curly brackets for? What is an enclosed expression used for? What kinds of items can they be inserted into?</p>
+         <p>Curly brackets create an enclosed expression, which is tells XQuery to interpret something as a function rather than as a literal string. They can be inserted into direct element constructors as well as every other kind of XQuery item - attributes, comments, strings, etc.</p>
+         <p>6. What is a FLWOR expression? What are the primary clauses that make up the acronym?</p>
+         <p>A FLWOR expression is an XQuery expression which must return a value; the acronym stands for For, Let, Where, Order by, Return.</p>
+         <p>7. What clauses must every FLWOR expression contain?</p>
+         <p>Either for OR let and ALWAYS return.</p>
+         <p>8. What does the phrase "binding a variable to a value" mean?</p>
+         <p>A method in XQuery for representing some piece of information (the value) with a placeholder (the variable), allowing you not to have to continue to type a value over and over again whenever you want to make use of it. This can be done with a let or a for clause.</p>
+         <p>9. What is the difference between a let clause and a for clause?</p>
+         <p>A let clause binds one variable to one value in one pass. A for clause iterates through a sequence of values, binding a variable to as many items as there are in the sequence, one item at a time.</p>
+         <p>10. Can a FLWOR expression get by without a let or for clause? Can it get by without a return clause?</p>
+         <p>Yes if it has the other (ie, if it doesn't have a let but does have a for OR if it doesn't have a for but does have a let), but no if it has neither. No.</p>
+         <p>11. What does a where clause do?</p>
+         <p>Allows you to write a test to screen out data that you do not want to include in your results; the test must evaluate to the boolean values of true or false.</p>
+         <p>12. How do we sort results alphabetically, or in reverse alphabetical order?</p>
+         <p>Using an order by clause (order by text); the default will be ascending order (ie, alphabetical), but by adding descending after the @title attribute you can reverse alphabetize a list of results.</p>
+         <p>13. What is the difference between the order by and group by clauses?</p>
+         <p>The order by clause changes the order of your results, but leaves you with a single sequence of items; the group by clause allows you to break your results into one or more groups of related items of information.</p>
+         <p>14. What does XQuery use the notion of effective boolean values for?</p>
+         <p>XQuery uses the notion of effective boolean values to turn expressions into boolean values in order to test them in a conditional expression.</p>
+         <p>15. In the example that returns "A wonderful book", what could you change the condition to in order to return the value "A doorstop"?</p>
+         <p>Anything other than <!--<title>XQuery for Humanists</title>-->.</p>
+         <p>16. Can a conditional expression get by without an else clause?</p>
+         <p>No.</p>
+      </body>
+  </text>
+</TEI>
