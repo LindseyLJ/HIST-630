@@ -1,2 +1,153 @@
 xquery version "3.1";
 
+(:Exercise 1
+
+declare namespace tei = "http://www.tei-c.org/ns/1.0";
+
+<tei:placeName>College Station, TX</tei:placeName>
+
+fn:concat("College Station", ", ", "TX"):)
+
+(:Exercise 2
+
+let $my-name := "Lindsey"
+(:return fn:string($my-name):)
+return fn:concat("Hello", ", ", fn:string($my-name)):)
+
+(:Exercise 3
+let $names := ("Joe", "Cliff", "Eleanor", "Leila", "Cooper", "Thomas", "Ben")
+
+for $name in $names
+
+return fn:concat("Hello", ", ", $name, "!"):)
+
+(:Exercise 7
+let $names := ("Joe", "Cliff", "Eleanor", "Leila", "Cooper", "Thomas", "Ben")
+
+for $name in $names
+
+return 
+if (fn:contains($name, "Cliff")) then
+fn:concat("Bonjour", ", ", $name, "!")
+else
+fn:concat("Hello", ", ", $name, "!"):)
+
+declare context item := document {
+<list>
+    <book>
+        <title>Documents of Performance in Early Modern England</title>
+        <author>Tiffany Stern</author>
+        <date year="2009">2009</date>
+        <publisher>
+            <city>New York</city>
+            <press>Cambridge University Press</press>
+        </publisher>
+        <identifier type="ISBN-10">0521842372</identifier>
+        <identifier type="ISBN-13">978-0521842372</identifier>
+    </book>
+    <book>
+        <title>Paratexts: Thresholds of Interpretation</title>
+        <author>Gerard Genette</author>
+        <date year="1997">1997</date>
+        <publisher>
+            <city>New York</city>
+            <press>Cambridge University Press</press>
+        </publisher>
+        <identifier type="ISBN-10">0521424062</identifier>
+        <identifier type="ISBN-13">978-0521424062</identifier>
+    </book>
+    <book>
+        <title>Shakespeare and Lost Plays: Reimagining Drama in Early Modern England</title>
+        <author>David McInnis</author>
+        <date year="2023">2023</date>
+        <publisher>
+            <city>New York</city>
+            <press>Cambridge University Press</press>
+        </publisher>
+        <identifier type="ISBN-10">1108824156</identifier>
+        <identifier type="ISBN-13">978-1108824156</identifier>
+    </book>
+    <book>
+        <title>Renaissance Drama and the Politics of Publication: Readings in the English Book Trade</title>
+        <author>Zachary Lesser</author>
+        <date year="2004">2004</date>
+        <publisher>
+            <city>New York</city>
+            <press>Cambridge University Press</press>
+        </publisher>
+        <identifier type="ISBN-10">0521842525</identifier>
+        <identifier type="ISBN-13">978-0521842525</identifier>
+    </book>
+    <book>
+        <title>Used Books: Marking Readers in Renaissance England</title>
+        <author>William H. Sherman</author>
+        <date year="2008">2008</date>
+        <publisher>
+            <city>Philadelphia</city>
+            <press>University of Pennsylvania Press</press>
+        </publisher>
+        <identifier type="ISBN-10">0812220841</identifier>
+        <identifier type="ISBN-13">978-0812220841</identifier>
+    </book>
+</list>
+};
+
+(:Exercise 4:)
+let $list :=//list
+let $books :=$list/book
+
+(:for $book in $books
+return $book/title - RETURN ALL TITLES
+return fn:concat($book/author, ", ", $book/title, ". ") - RETURN AUTHOR, TITLE:)
+
+(:for $title in $book/title
+where $title/???
+return $book/title
+I can't figure out how to make the "where" clause:)
+
+(:for $book in $books
+order by $book/author
+return $book/title
+ORDER ALPHABETICALLY BY AUTHOR (FIRST NAME):)
+
+(:for $book in $books
+order by $book/title
+return $book/title
+ORDER ALPHABETICALLY BY TITLE:)
+
+(:for $book in $books
+order by $book/date
+return $book/title
+ORDER CHRONOLOGICALLY BY DATE:)
+
+(:for $book in $books
+order by $book/date descending
+return $book/title
+ORDER REVERSE CHRONOLOGICALLY BY DATE:)
+
+(:Exercise 5
+for $book in $list/book
+order by $book/title
+count $n
+return fn:concat($n, ". ", $book/title):)
+
+(:Exercise 6
+for $book in $list/book
+order by $book/@date descending, $book/text()
+group by $date := $book/@date
+return
+    <list published="{ $date }">
+        { $book/title }
+    </list>
+This does not work to group the results even when I change some of the dates so multiple books have the same years of publication:)
+
+(:Exercise 8
+for $book in $list/book
+let $date :=$book/date
+(:order by $book/@date descending, $book/text():)
+(:group by $date := $book/@date:)
+return
+    if ($date>=2005) then
+    "New"
+    else
+    "Old" :)
