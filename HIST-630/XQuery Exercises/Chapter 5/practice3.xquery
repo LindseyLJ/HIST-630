@@ -12,7 +12,7 @@ declare context item := document {
 </list>
 };
 
-let $list:=//list
+let $list :=//list
 let $books :=$list/book
 
 (:for $book in $books
