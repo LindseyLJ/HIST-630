@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Title</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+  </teiHeader>
+  <text>
+      <body>
+         <p>1. What do we mean by XQuery's built-in function library? The functions that are built into XQuery's language and provide the basic functionality for most programs you write.</p>
+         <p>2. What is the prefix for the default function namespace? fn, but since it is the default you can omit it, although the authors recommend against doing so for consistency.</p>
+         <p>3. Where can you go to look up the functions in XQuery's built-in function library? There are several websites: the XPath and XQuery Functions and Operators 3.1, although the op functions should be ignored; Priscilla Walmsley's XQuery Functions website, althought it is only current for 1.0 functions and is therefore out of date for 3.1; and Saxonica's list of functions (the links for these sites are in the notes for chapter 6 as well as the XQuery for Humanists website).</p>
+         <p>4. What is an example of a function with more than one signature? Why might a function have multiple signatures? The fn:substring function. Functions with multiple different signatures are called "overloaded" and help the functions library remain concise, instead of having distinct names for every variation.</p>
+         <p>5. What is a sequence, and how do you construct one? A sequence is a group of items seperated by commas, located inside a set of parentheses.</p>
+         <p>6. What do the fn:head() and fn:tail() functions do? fn:head() identifies the first item in a sequence; fn:tail() identifies all of the other items in a sequence.</p>
+         <p>7. What is an extension function? What is a user-defined function? An extension function is one that comes with a particular XQuery processor which is not built into the language; a user-defined function is one written by the user.</p>
+         <p>8. What are some of the areas where the EXPath community has extended XQuery? Such areas include accessing the file system, sending HTTP requests, working with binary files, and performing cryptography.</p>
+         <p>9. What is an inline function? AKA an anonymous function, a user-defined function which does not declare a named function but acts as a "throw away"/"one off" function.</p>
+         <p>10. Imagine you are creating a bibliography or biographical database. What kinds of user-defined functions might you want to include in your function library for displaying the names in the database? A bibliographical database would require functions that could identify titles and subtitles and then display these correctly (including correct capitalization and formatting: Title: Subtitle); a biographical databse would require functions that could identify names of persons and then display these correctly (capitalization, formatting which might place names with surname last or first depending on the individual's language of origin).</p>
+         <p>11. Why might you want to annotate some of your functions as "private" versus "public"? Functions are public by default, so annotating them as such is optional, however it might help you stay consistent; you might want to change this setting to private if you want a function invisible to the external world (ie, outside of that function's library), generally because that function is a helper function and could prove not useful or potentially problematic when called from outside their original library.</p>
+      </body>
+  </text>
+</TEI>
