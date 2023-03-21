@@ -1,18 +1,18 @@
 xquery version "3.1";
 
-(:Exercise 1
+(:Exercise 1:)
 
-declare namespace tei = "http://www.tei-c.org/ns/1.0";
+(:declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
-<tei:placeName>College Station, TX</tei:placeName>
-
-fn:concat("College Station", ", ", "TX"):)
+<tei:title>
+    { fn:concat("The Lord of the Rings", ": ", "The Fellowship of the Ring") }
+</tei:title>:)
 
 (:Exercise 2
 
 let $my-name := "Lindsey"
-(:return fn:string($my-name):)
-return fn:concat("Hello", ", ", fn:string($my-name)):)
+(:return $my-name:)
+return fn:concat("Hello", ", ", $my-name):)
 
 (:Exercise 3
 let $names := ("Joe", "Cliff", "Eleanor", "Leila", "Cooper", "Thomas", "Ben")
@@ -27,10 +27,10 @@ let $names := ("Joe", "Cliff", "Eleanor", "Leila", "Cooper", "Thomas", "Ben")
 for $name in $names
 
 return 
-if (fn:contains($name, "Cliff")) then
-fn:concat("Bonjour", ", ", $name, "!")
+    if (fn:contains($name, "Cliff")) then
+    fn:concat("Bonjour", ", ", $name, "!")
 else
-fn:concat("Hello", ", ", $name, "!"):)
+    fn:concat("Hello", ", ", $name, "!"):)
 
 declare context item := document {
 <list>
@@ -93,61 +93,157 @@ declare context item := document {
 };
 
 (:Exercise 4:)
-let $list :=//list
-let $books :=$list/book
+(:let $list := //list
+let $books := $list/book
 
-(:for $book in $books
-return $book/title - RETURN ALL TITLES
-return fn:concat($book/author, ", ", $book/title, ". ") - RETURN AUTHOR, TITLE:)
-
-(:for $title in $book/title
-where $title/???
+for $book in $books
 return $book/title
-I can't figure out how to make the "where" clause:)
-
-(:for $book in $books
-order by $book/author
+OR
+let $book := list/book
 return $book/title
+OR
+for $book in list/book
+return $book/title - RETURN ALL TITLES:)
+
+(:for $book in list/book
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
+RETURN CITATION:)
+
+(:for $book in list/book
+
+    where fn:contains($book/title, "Drama")
+    where fn:contains($book/date, "2023")
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
+WHERE clause (x2):)
+
+(:for $book in list/book [fn:contains(title, "Drama")]
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
+predicate instead of a where clause:)
+
+(:for $book in list/book
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    order by $author
+    
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
 ORDER ALPHABETICALLY BY AUTHOR (FIRST NAME):)
 
-(:for $book in $books
-order by $book/title
-return $book/title
+(:for $book in list/book
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    order by $title
+    
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
 ORDER ALPHABETICALLY BY TITLE:)
 
-(:for $book in $books
-order by $book/date
-return $book/title
+(:for $book in list/book
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    order by $date
+    
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
 ORDER CHRONOLOGICALLY BY DATE:)
 
-(:for $book in $books
-order by $book/date descending
-return $book/title
+(:for $book in list/book
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    order by $date descending
+    
+return 
+    <bibl>
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>
 ORDER REVERSE CHRONOLOGICALLY BY DATE:)
 
 (:Exercise 5
-for $book in $list/book
-order by $book/title
-count $n
-return fn:concat($n, ". ", $book/title):)
+for $book at $n in list/book
+
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    order by $title
+    
+return 
+    <bibl n="{$n}">
+        { fn:concat($author, ". ", $title, ". ", $press, ", ", $date, ". ") }
+    </bibl>:)
 
 (:Exercise 6
-for $book in $list/book
-order by $book/@date descending, $book/text()
-group by $date := $book/@date
-return
-    <list published="{ $date }">
-        { $book/title }
-    </list>
-This does not work to group the results even when I change some of the dates so multiple books have the same years of publication:)
+for $book at $n in list/book
 
-(:Exercise 8
-for $book in $list/book
-let $date :=$book/date
-(:order by $book/@date descending, $book/text():)
-(:group by $date := $book/@date:)
+    let $author := $book/author
+    let $title := $book/title
+    let $press := $book/publisher/press
+    let $date := $book/date
+    
+    let $year := $book/date/@year
+    group by $year
+    
+return 
+    <book published="{$year}">
+        { $book/title }
+    </book>:)
+
+(:Exercise 8:)
+for $book in list/book
+
+let $type :=
+    if (xs:integer($book/date/@year) lt 2005) then "old"
+    else "new"
+    
+group by $type
+
 return
-    if ($date>=2005) then
-    "New"
-    else
-    "Old" :)
+    <bucket type="{$type}">
+        { $book/title }
+    </bucket>
