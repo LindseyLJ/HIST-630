@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+     <fileDesc>
+        <titleStmt>
+           <title>The Seconde Part of the Unfortunate Florinda</title>
+           <author><persName><roleName type="nobility">Lady</roleName> <forename>Hester</forename> <surname>Pulter</surname></persName></author>
+           <respStmt>
+              <resp>Encoder</resp>
+              <name>Lindsey L. Jones</name>
+           </respStmt>
+           <respStmt>
+              <resp>Transcriber</resp>
+              <name>Lena Cowen Orlin</name>
+           </respStmt>
+           <respStmt>
+              <resp>Transcriber</resp>
+              <name>Lindsey L. Jones</name>
+           </respStmt>
+        </titleStmt>
+        <publicationStmt>
+           <p>Encoded for HIST 630: Digital Methods for Historical Research, Texas A&amp;M University, Spring 2023.</p>
+        </publicationStmt>
+        <sourceDesc>
+           <msDesc>
+              <msIdentifier>
+                 <settlement>Leeds, United Kingdom</settlement>
+                 <repository>Brotherton Library, University of Leeds</repository>
+                 <idno>BC MS Lt q 32</idno>
+              </msIdentifier>
+              <msContents>
+                 <p>Document is two loose leaves, handwritten in italic on both recto and verso.</p>
+              </msContents>
+           </msDesc>
+        </sourceDesc>
+     </fileDesc>
+  </teiHeader>
+   <standOff>
+      <listPerson type="fictional">
+         <person xml:id="Flor">
+            <persName><forename>Florinda</forename></persName>
+            <note>Main character of the romance. Based on legendary figure Florinda la Cava. Daughter of Count Julian and Castara. Beloved of Alphonso. After her rape by King Roderigo, she urges her family to revenge.</note>
+         </person>
+         <person xml:id="Rod">
+            <persName><roleName type="nobility">King</roleName><forename>Roderigo</forename></persName>
+            <note>King of Spain. Husband of Zabra. Based on historical figure Roderic, last Visigothic king. His rape of Florinda leads to Count Julian leading a force against him.</note>
+         </person>
+         <person xml:id="Cast">
+            <persName><forename>Castabella</forename></persName>
+            <note>Attendant of Fidelia. Sister of Alphonso. Virginal friend of Florinda who counsels her to have patience.</note>
+         </person>
+         <person xml:id="Jul">
+            <persName><roleName type="nobility">Count</roleName> <forename>Julian</forename></persName>
+            <note>Father of Florinda. Husband of Castara. Legendary figure, probably ahistorical. His outrage over his daughter's rape spurs him to lead a force against Roderigo.</note>
+         </person>
+         <person xml:id="MCas">
+            <persName>Castara</persName>
+            <note>Mother of Florinda. Wife of Julian. Helps her daughter and husband urge family friends to join Julian's force against Roderigo.</note>
+         </person>
+         <person xml:id="Alph">
+            <persName><forename>Alphonso</forename></persName>
+            <note>Beloved of Florinda. Brother of Castabella. Ordered by Roderigo to accompany Ithocles in order to get him away from court.</note>
+         </person>
+         <person xml:id="Ith">
+            <persName><forename>Ithocles</forename></persName>
+            <note>Brother of Fidelia. An African prince in exile.</note>
+         </person>
+         <person xml:id="Alo">
+            <persName><forename>Alonso</forename></persName>
+            <note>Roderigo's chief lackey.</note>
+         </person>
+         <person xml:id="Zab">
+            <persName><roleName type="nobility">Queen</roleName><forename>Zabra</forename></persName>
+            <note>Queen of Spain. Wife of Roderigo. Originally worshipped the classical deities but converted to Christianity before her marriage.</note>
+         </person>
+         <listRelation type="personal">
+            <relation name="parent"
+               active="#Jul #MCas" passive="#Flor"/>
+            <relation name="romantic"
+               mutual="#Jul #MCas"/>
+            <relation name="romantic"
+               mutual="#Flor #Alph"/>
+            <relation name="romantic"
+               mutual="#Rod #Zab"/>
+            <relation name="assault"
+               active="#Rod" passive="#Flor"/>
+            <relation name="friends"
+               mutual="#Flor #Cast"/>
+            <relation name="sibling"
+               mutual="#Cast #Alph"/>
+         </listRelation>
+         <listRelation type="social">
+            <relation name="fealty"
+               active="#Rod" passive="#Jul #Alo"/>
+         </listRelation>
+      </listPerson>
+      <listPlace>
+         <place xml:id="Sp">
+            <placeName><country type="kingdom">Spain</country></placeName>
+            <note>Kingdom ruled by Roderigo in which the romance chiefly takes place.</note>
+         </place>
+      </listPlace>
+    </standOff>
+</TEI>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Title</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Publication Information</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Information about the source</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <schemaSpec ident="ExemplumODD" start="TEI">
+        <moduleRef key="header"/>
+        <moduleRef key="core"/>
+        <moduleRef key="tei"/>
+        <moduleRef key="textstructure"/>
+        <moduleRef key="namesdates"/>
+        <moduleRef key="linking"/>
+        <moduleRef key="msdescription"/>
+        <moduleRef key="transcr"/>
+        <!--<moduleRef key="textstructure"exclude="div1" div2 div3"/>-->
+        <!--<moduleRef key="drama" include="epilogue prologue role set"/>-->
+        <!--ONLY do one of either include or exclude - never both; if you want ALL of a module to apply, you don't need to include either-->
+      </schemaSpec>
+      <!--
+        <elementSpec module="namesdates" ident="persName" mode="change"/>
+        <content>
+          <sequence preserveOrder-"true">
+          <elementRef key ="forename"/>
+          <elementRef key ="surname"/>
+          </sequence>
+        </content>        
+      <attList>
+        <attDef ident="type" mode="change" usage="req">
+          <datatype>
+            <dataRef key="teidata.enumerated"/>
+          </datatype>
+          <valList type="closed" moder="replace">
+            <valItem ident="char">
+              <gloss>Character</gloss>
+              <desc>A fictional character within the text.</desc>
+            </valItem>
+            <valItem ident="hist">
+              <gloss>Historical>
+              <desc>A nonfictional person referenced within the text, but not a character within the text.</desc>
+            </valItem>
+          </valList>
+        </attDef>
+      <attList>
+    </elementSpec>
+      -->
+    </body>
+  </text>
+</TEI>

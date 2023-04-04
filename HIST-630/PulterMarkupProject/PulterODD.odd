@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Title</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Publication Information</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Information about the source</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <schemaSpec ident="PulterODD" start="TEI">
+        <moduleRef key="header"/>
+        <moduleRef key="core"/>
+        <moduleRef key="tei"/>
+        <moduleRef key="textstructure"/>
+        <moduleRef key="namesdates"/>
+        <moduleRef key="linking"/>
+        <moduleRef key="msdescription"/>
+        <moduleRef key="transcr"/>
+      </schemaSpec>
+      <!--
+        <elementSpec module="namesdates" ident="persName" mode="change"/>
+        <content>
+          <sequence preserveOrder-"true">
+          <elementRef key ="forename"/>
+          <elementRef key ="surname"/>
+          </sequence>
+        </content>        
+      <attList>
+        <attDef ident="type" mode="change" usage="req">
+          <datatype>
+            <dataRef key="teidata.enumerated"/>
+          </datatype>
+          <valList type="closed" moder="replace">
+            <valItem ident="char">
+              <gloss>Character</gloss>
+              <desc>A fictional character within the text.</desc>
+            </valItem>
+            <valItem ident="hist">
+              <gloss>Historical>
+              <desc>A nonfictional person referenced within the text, but not a character within the text.</desc>
+            </valItem>
+          </valList>
+        </attDef>
+      <attList>
+    </elementSpec>
+      -->
+    </body>
+  </text>
+</TEI>
