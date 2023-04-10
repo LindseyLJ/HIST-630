@@ -24,16 +24,15 @@
         <moduleRef key="linking"/>
         <moduleRef key="msdescription"/>
         <moduleRef key="transcr"/>
-        <!--<moduleRef key="textstructure"exclude="div1" div2 div3"/>-->
+        <!--<moduleRef key="textstructure" exclude="div1" div2 div3"/>-->
         <!--<moduleRef key="drama" include="epilogue prologue role set"/>-->
         <!--ONLY do one of either include or exclude - never both; if you want ALL of a module to apply, you don't need to include either-->
-      </schemaSpec>
       <!--
         <elementSpec module="namesdates" ident="persName" mode="change"/>
         <content>
-          <sequence preserveOrder-"true">
-          <elementRef key ="forename"/>
-          <elementRef key ="surname"/>
+          <sequence preserveOrder="true">
+          <elementRef key="forename"/>
+          <elementRef key="surname"/>
           </sequence>
         </content>        
       <attList>
@@ -47,14 +46,15 @@
               <desc>A fictional character within the text.</desc>
             </valItem>
             <valItem ident="hist">
-              <gloss>Historical>
+              <gloss>Historical</gloss>
               <desc>A nonfictional person referenced within the text, but not a character within the text.</desc>
             </valItem>
           </valList>
         </attDef>
       <attList>
-    </elementSpec>
+     </elementSpec>
       -->
+      </schemaSpec>
     </body>
   </text>
 </TEI>
