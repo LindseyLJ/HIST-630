@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader>
+  <teiHeader> <!--This header was copied verbatim from the PulterTEIWIP document and may need to be changed! (especially because it is making Oxygen indicate errors)-->
     <fileDesc>
       <titleStmt>
-        <title>Title</title>
+        <title>The Seconde Part of the Unfortunate Florinda</title>
+        <author><persName><roleName type="nobility">Lady</roleName>
+          <forename>Hester</forename>
+          <surname>Pulter</surname></persName></author>
+        <respStmt>
+          <resp>Encoder</resp>
+          <name>Lindsey L. Jones</name>
+        </respStmt>
+        <respStmt>
+          <resp>Transcriber</resp>
+          <name>Lena Cowen Orlin</name>
+        </respStmt>
+        <respStmt>
+          <resp>Transcriber</resp>
+          <name>Lindsey L. Jones</name>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
-        <p>Publication Information</p>
+        <p>Encoded for HIST 630: Digital Methods for Historical Research, Texas A&amp;M
+          University, Spring 2023.</p>
       </publicationStmt>
       <sourceDesc>
-        <p>Information about the source</p>
+        <msDesc>
+          <msIdentifier>
+            <settlement>Leeds, United Kingdom</settlement>
+            <repository>Brotherton Library, University of Leeds</repository>
+            <idno>BC MS Lt q 32</idno>
+          </msIdentifier>
+          <msContents>
+            <p>Document is two loose leaves, handwritten in italic on both recto and
+              verso.</p>
+          </msContents>
+        </msDesc>
       </sourceDesc>
     </fileDesc>
   </teiHeader>
@@ -20,38 +46,44 @@
         <moduleRef key="core"/>
         <moduleRef key="tei"/>
         <moduleRef key="textstructure"/>
-        <moduleRef key="namesdates"/>
+        <moduleRef key="namesdates" except="population"/>
         <moduleRef key="linking"/>
-        <moduleRef key="msdescription"/>
-        <moduleRef key="transcr"/>
+        <moduleRef key="msdescription" except="custodialHist heraldry musicNotation sealDesc typeDesc"/>
+        <moduleRef key="transcr" except="path secl"/>
+        <!--<elementSpec module="linking" ident="timeline" mode="change"/>
+        I want to make the "timeline" element available/applicable only for identifying changes in the writing of the text - ie, 'this word was changed in the course of the writing,' 'this sentence was added after the original draft was written', etc. - NOT for creating a timeline for the events of the plot-->
+        <elementSpec module="core" ident="add" mode="change">
+          <attList>
+            <attDef ident="place" mode="change" usage="req">
+              <!--<datatype>
+                <dataRef key="?"/> how do you figure this out? is it required?
+              </datatype>-->
+              <desc>All additions to the text marked with <!--<add/>--> must include a "place" attribute.</desc>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <elementSpec module="core" ident="gap" mode="change">
+          <attList>
+            <attDef ident="reason" mode="change" usage="req">
+              <desc>All gaps in the text marked with <!--<gap/>--> must include a "reason" attribute.</desc>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <elementSpec module="core" ident="del" mode="change">
+          <attList>
+            <attDef ident="timeline" mode="change" usage="req">
+              <desc>All deletions in the text marked with <!--<del/>--> must include a "timeline" attribute.</desc>
+            </attDef>
+          </attList>
+        </elementSpec>
+        <elementSpec module="transcr" ident="supplied" mode="change">
+          <attList>
+            <attDef ident="reason" mode="change" usage="req">
+              <desc>All supplied text marked with <!--<supplied/>--> must include a "reason" attribute.</desc>
+            </attDef>
+          </attList>
+        </elementSpec>
       </schemaSpec>
-      <!--
-        <elementSpec module="namesdates" ident="persName" mode="change"/>
-        <content>
-          <sequence preserveOrder-"true">
-          <elementRef key ="forename"/>
-          <elementRef key ="surname"/>
-          </sequence>
-        </content>        
-      <attList>
-        <attDef ident="type" mode="change" usage="req">
-          <datatype>
-            <dataRef key="teidata.enumerated"/>
-          </datatype>
-          <valList type="closed" moder="replace">
-            <valItem ident="char">
-              <gloss>Character</gloss>
-              <desc>A fictional character within the text.</desc>
-            </valItem>
-            <valItem ident="hist">
-              <gloss>Historical>
-              <desc>A nonfictional person referenced within the text, but not a character within the text.</desc>
-            </valItem>
-          </valList>
-        </attDef>
-      <attList>
-    </elementSpec>
-      -->
     </body>
   </text>
 </TEI>
