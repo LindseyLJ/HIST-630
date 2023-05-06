@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
-  <teiHeader> <!--This header was copied verbatim from the PulterTEIWIP document and may need to be changed! (especially because it is making Oxygen indicate errors)-->
+<TEI xmlns:sch="http://purl.oclc.org/dsdl/scehmatron" xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>The Seconde Part of the Unfortunate Florinda</title>
+        <title>ODD Customization for The Seconde Part of the Unfortunate Florinda</title>
         <author><persName><roleName type="nobility">Lady</roleName>
           <forename>Hester</forename>
           <surname>Pulter</surname></persName></author>
@@ -32,8 +32,7 @@
             <idno>BC MS Lt q 32</idno>
           </msIdentifier>
           <msContents>
-            <p>Document is two loose leaves, handwritten in italic on both recto and
-              verso.</p>
+            <p>Document is two loose leaves, handwritten in italic on both recto and verso.</p>
           </msContents>
         </msDesc>
       </sourceDesc>
@@ -50,39 +49,151 @@
         <moduleRef key="linking"/>
         <moduleRef key="msdescription" except="custodialHist heraldry musicNotation sealDesc typeDesc"/>
         <moduleRef key="transcr" except="path secl"/>
-        <!--<elementSpec module="linking" ident="timeline" mode="change"/>
-        I want to make the "timeline" element available/applicable only for identifying changes in the writing of the text - ie, 'this word was changed in the course of the writing,' 'this sentence was added after the original draft was written', etc. - NOT for creating a timeline for the events of the plot-->
+
+<!--
+        <constraintSpec ident="persNameType_Text" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei:body//tei:p//tei:persName | //tei:text//tei:body//tei:l//tei:persName">
+              <sch:let name="persNameVal" value="'char', 'hist'"/>
+              <sch:assert test="@type = $persNameVal">
+                Incorrect @type value for &lt;persName&gt;. Must be "char" (for fictional characters) or "hist" (for historical figures). 
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+
+        
+        <constraintSpec ident="addVal_Place" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei/body//tei:ab//tei:add">
+              <sch:let name="addPlace" value="'above', 'rightMargin', 'leftMargin'"/>
+              <sch:assert test="@type = $addPlace">
+                Lacks @type value for &lt;add&gt;. All additions to the text must include a "place" attribute.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+
+        <constraintSpec ident="gapVal_Reason" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei/body//tei:ab//tei:gap">
+              <sch:let name="gapReason" value="'cancelled', 'illegible', 'damage'"/>
+              <sch:assert test="@type = $gapReason">
+                Lacks @type value for &lt;gap&gt;. All gaps in the text must include a "reason" attribute.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+
+        <constraintSpec ident="delVal_When" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei/body//tei:ab//tei:del">
+              <sch:let name="delWhen" value="LIST"/>
+              <sch:assert test="@type = $delWhen">
+                Lacks @type value for &lt;del&gt;. All deletions in the text must include a "when" attribute.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+
+        <constraintSpec ident="suppliedVal_Reason" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei/body//tei:ab//tei:supplied">
+              <sch:let name="suppliedReason" value="'damage'"/>
+              <sch:assert test="@type = $suppliedReason">
+                Lacks @type value for &lt;supplied&gt;. All supplied text must include a "reason" attribute.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>-->
+
         <elementSpec module="core" ident="add" mode="change">
           <attList>
-            <attDef ident="place" mode="change" usage="req">
-              <!--<datatype>
-                <dataRef key="?"/> how do you figure this out? is it required?
-              </datatype>-->
-              <desc>All additions to the text marked with <!--<add/>--> must include a "place" attribute.</desc>
+            <attDef ident="place" mode="replace" usage="req">
+              <datatype>
+                <dataRef key="data.enumerated"/>
+              </datatype>
+              <valList type="closed">
+                <valItem ident="above">
+                  <desc>The addition was written in above the line.</desc>
+                </valItem>
+                <valItem ident="leftMargin">
+                  <desc>The addition was written into the left side margin.</desc>
+                </valItem>
+                <valItem ident="rightMargin">
+                  <desc>The addition was written into the right side margin.</desc>
+                </valItem>
+              </valList>
             </attDef>
           </attList>
         </elementSpec>
+
         <elementSpec module="core" ident="gap" mode="change">
           <attList>
-            <attDef ident="reason" mode="change" usage="req">
-              <desc>All gaps in the text marked with <!--<gap/>--> must include a "reason" attribute.</desc>
+            <attDef ident="reason" mode="replace" usage="req">
+              <datatype>
+                <dataRef key="data.enumerated"/>
+              </datatype>
+              <valList type="closed">
+                <valItem ident="cancelled">
+                  <desc>Text was crossed out by Pulter and cannot be made out with confidence.</desc>
+                </valItem>
+                <valItem ident="illegible">
+                  <desc>Text was not cancelled but cannot be made out with confidence.</desc>
+                </valItem>
+                <valItem ident="damage">
+                  <desc>Damage to the page has left the text unreadable with any confidence.</desc>
+                </valItem>
+              </valList>
             </attDef>
           </attList>
         </elementSpec>
+
         <elementSpec module="core" ident="del" mode="change">
           <attList>
-            <attDef ident="timeline" mode="change" usage="req">
-              <desc>All deletions in the text marked with <!--<del/>--> must include a "timeline" attribute.</desc>
+            <attDef ident="when" mode="replace" usage="req">
+              <datatype>
+                <dataRef key="data.enumerated"/>
+              </datatype>
+              <valList type="closed">
+                <valItem ident="TOWH">
+                  <desc>This deletion has a high likelihood of being made during the writing of the manuscript.</desc>
+                </valItem>
+                <valItem ident="TOWM">
+                  <desc>This deletion has a medium likelihood of being made during the writing of the manuscript.</desc>
+                </valItem>
+                <valItem ident="CTOW">
+                  <desc>This deletion has a high likelihood of being made close to the writing of the manuscript.</desc>
+                </valItem>
+                <valItem ident="LTOW">
+                  <desc>This deletion has a high likelihood of being made later than the writing of the manuscript.</desc>
+                </valItem>
+                <valItem ident="NTOW">
+                  <desc>This deletion has a high likelihood of not being made during the writing of the manuscript.</desc>
+                </valItem>
+                <valItem ident="UNK">
+                  <desc>This deletion was made at an uncertain time relative to the writing of the manuscript.</desc>
+                </valItem>
+              </valList>
             </attDef>
           </attList>
         </elementSpec>
+
         <elementSpec module="transcr" ident="supplied" mode="change">
           <attList>
-            <attDef ident="reason" mode="change" usage="req">
-              <desc>All supplied text marked with <!--<supplied/>--> must include a "reason" attribute.</desc>
+            <attDef ident="reason" mode="replace" usage="req">
+              <datatype>
+                <dataRef key="data.enumerated"/>
+              </datatype>
+              <valList type="semi">
+                <valItem ident="damage">
+                  <desc>Text was supplied despite the damage with high level of confidence.</desc>
+                </valItem>
+              </valList>
             </attDef>
           </attList>
         </elementSpec>
+
       </schemaSpec>
     </body>
   </text>
